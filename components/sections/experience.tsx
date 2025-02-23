@@ -4,14 +4,40 @@ import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 
 const experiences = [
+
+
   {
-    title: "Software Developer Intern",
-    company: "Company Name",
-    period: "June 2023 - Present",
-    description: "Description of your internship experience and achievements",
+    title: "Associate IT",
+    company: "IDPC Solutions",
+    period: "July 2024 - January 2025",
+    description: `
+      Built and managed IT infrastructure and software solutions for clients, ensuring optimal performance.
+      Led the deployment and maintenance of over 50 client projects, delivering each one on time and within budget.
+      Conceptualized and drove web and multi-platform development, successfully completing 50+ projects across various platforms.
+    `,
   },
-  // Add more experiences here
+  {
+    title: "Full Stack Developer Intern",
+    company: "Devtern",
+    period: "May 2024 - July 2024",
+    description: `
+      Conceptualized and delivered full-stack web development projects, utilizing technologies like HTML, CSS, JavaScript, and React.
+      Implemented scalable web applications, contributing to both design and deployment.
+      Built responsive and user-friendly web interfaces, enhancing user experience across multiple platforms.
+    `,
+  },
+  {
+    title: "Flutter Developer Intern",
+    company: "Ardent",
+    period: "June 2023 - August 2023",
+    description: `
+      Developed multiple cross-platform applications using Flutter, enhancing usability and reach.
+      Implemented critical features like user authentication and backend integration, ensuring robust and secure applications.
+    `,
+  },
 ];
+
+
 
 export function Experience() {
   return (

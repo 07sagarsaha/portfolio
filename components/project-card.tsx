@@ -29,15 +29,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="project-card">
       <div className="relative">
-        <div className="image-slider">
+        <div className="image-slider ">
           {project.images.map((image, index) => (
+
             <img
               key={index}
               src={image}
               alt={`${project.title} image ${index + 1}`}
-              className={`w-full h-48 object-cover transition-opacity duration-500 ${
-                index === currentImageIndex ? "opacity-100" : "opacity-0"
-              }`}
+              className={`w-full h-48 object-cover transition-opacity duration-500 ${index === currentImageIndex ? "opacity-100" : "opacity-0"
+                }`}
             />
           ))}
         </div>
@@ -45,9 +45,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {project.images.map((_, index) => (
             <div
               key={index}
-              className={`w-2 h-2 rounded-full cursor-pointer ${
-                index === currentImageIndex ? "bg-white" : "bg-gray-400"
-              }`}
+              className={`w-2 h-2 rounded-full cursor-pointer ${index === currentImageIndex ? "bg-white" : "bg-gray-400"
+                }`}
               onClick={() => handleDotClick(index)}
             />
           ))}
