@@ -28,7 +28,12 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
+          {/* <div className="flex items-center mb-6 flex-col"> */}
+
+          {/* <img src="https://i.postimg.cc/mk9GYHqL/IMG-20231223-125412-345.jpg" className="w-40 h-40 rounded-2xl" /> */}
+
           <h1 className="hero-heading mb-6">Hi, I'm Sagar Saha</h1>
+          {/* </div> */}
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">
             A passionate software developer and fourth-year student, crafting
             elegant solutions through code.

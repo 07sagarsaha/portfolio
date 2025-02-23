@@ -36,7 +36,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               key={index}
               src={image}
               alt={`${project.title} image ${index + 1}`}
-              className={`w-full h-48 object-cover transition-opacity duration-500 ${index === currentImageIndex ? "opacity-100" : "opacity-0"
+              className={`w-full  object-cover transition-opacity duration-500 ${index === currentImageIndex ? "opacity-100" : "opacity-0"
                 }`}
             />
           ))}
