@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 
 const skills = {
-  languages: ["JavaScript", "TypeScript", "Python", "Java"],
-  frontend: ["React", "Next.js", "Tailwind CSS", "Three.js"],
-  backend: ["Node.js", "Express", "Django", "Spring Boot"],
-  databases: ["MongoDB", "PostgreSQL", "MySQL"],
-  tools: ["Git", "Docker", "AWS", "Firebase"],
+  languages: ["JavaScript", "Python", "Java", "dart"],
+  frontend: ["React", "Next.js", "Tailwind CSS", "Three.js", "HTML", "CSS"],
+  backend: ["Node.js", "Express"],
+  databases: ["MongoDB", "MySQL"],
+  tools: ["Git", "Firebase"],
 };
 
 export function Skills() {
