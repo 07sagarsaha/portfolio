@@ -38,7 +38,7 @@ export function ParticleBackground() {
       : '142, 76%, 36%'; // HSL values for light mode primary
 
     // Particle settings
-    const particleCount = 100;
+    const particleCount = 150;
     const particles: Particle[] = [];
 
     // Initialize particles
@@ -47,7 +47,7 @@ export function ParticleBackground() {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 3 + 1, // Particles between 1-4px
-        speed: Math.random() * 1 + 1, // Speed between 1-2
+        speed: Math.random() * 1 + 0.5, // Speed between 0.5-1.5
         opacity: Math.random() * 0.5 + 0.2,
       });
     }
