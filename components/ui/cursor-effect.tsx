@@ -7,28 +7,37 @@ export function CursorEffect() {
   const [isHovered, setIsHovered] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
+  const trailX = useMotionValue(-100);
+  const trailY = useMotionValue(-100);
 
+  // Main cursor spring config
   const springConfig = { damping: 25, stiffness: 700 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
+
+  // Trail spring config (more loose for trailing effect)
+  const trailSpringConfig = { damping: 15, stiffness: 150 };
+  const trailXSpring = useSpring(trailX, trailSpringConfig);
+  const trailYSpring = useSpring(trailY, trailSpringConfig);
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16);
       cursorY.set(e.clientY - 16);
+      trailX.set(e.clientX - 16);
+      trailY.set(e.clientY - 16);
     };
 
     window.addEventListener('mousemove', moveCursor);
     return () => {
       window.removeEventListener('mousemove', moveCursor);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, trailX, trailY]);
 
   useEffect(() => {
     const handleMouseOver = () => setIsHovered(true);
     const handleMouseOut = () => setIsHovered(false);
 
-    // Updated selector to include all interactive elements and cards
     const interactiveElements = document.querySelectorAll(`
       button, 
       a, 
@@ -56,15 +65,16 @@ export function CursorEffect() {
 
   return (
     <>
+      {/* Trail effect */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-50 h-8 w-8 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-40 h-8 w-8 mix-blend-difference"
         style={{
-          x: cursorXSpring,
-          y: cursorYSpring,
+          x: trailXSpring,
+          y: trailYSpring,
         }}
       >
         <motion.div
-          className="h-10 w-10 rounded-full bg-white"
+          className="h-7 w-7 rounded-full bg-white opacity-30"
           animate={{
             scale: isHovered ? 2 : 1,
           }}
@@ -74,9 +84,36 @@ export function CursorEffect() {
           }}
         />
       </motion.div>
+
+      {/* Main cursor */}
+      <motion.div
+        className="pointer-events-none fixed left-0 top-0 z-50 h-8 w-8 mix-blend-difference"
+        style={{
+          x: cursorXSpring,
+          y: cursorYSpring,
+        }}
+      >
+        <motion.div
+          className="h-7 w-7 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.7)]"
+          animate={{
+            scale: isHovered ? 2 : 1,
+          }}
+          transition={{
+            duration: 0.15,
+            ease: 'easeOut',
+          }}
+        />
+      </motion.div>
+
       <style jsx global>{`
         body {
           cursor: none;
+        }
+        
+        @media (max-width: 768px) {
+          body {
+            cursor: auto;
+          }
         }
       `}</style>
     </>
