@@ -14,7 +14,7 @@ import {
 
 export function Navbar() {
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-background shadow-lg border-b rounded-b-3xl">
+    <div className="fixed top-0 left-0 right-0 z-50 glass-effect border-b">
       <div className="flex h-16 items-center px-4 container mx-auto">
         <NavigationMenu>
           <NavigationMenuList>

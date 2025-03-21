@@ -1,9 +1,17 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
+    --glass-background: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --glass-backdrop: blur(12px);
+    --glass-cursor: rgba(255, 255, 255, 0.8);
+    --glass-cursor-trail: rgba(255, 255, 255, 0.3);
+    
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -27,6 +35,13 @@
   }
 
   .dark {
+    --glass-background: rgba(30, 30, 30, 0.8); /* Increased opacity */
+    --glass-border: rgba(255, 255, 255, 0.15); /* Increased border visibility */
+    --glass-shadow: 0 8px 32px 0 rgba(42, 161, 78, 0.11); /* Darker shadow */
+    --glass-backdrop: blur(12px);
+    --glass-cursor: rgba(255, 255, 255, 0.664);
+    --glass-cursor-trail: rgba(255, 255, 255, 0.3);
+    
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
     --card: 24 9.8% 10%;
@@ -58,6 +73,44 @@
   }
 }
 
+@layer components {
+  .glass-effect {
+    @apply backdrop-blur-md;
+    background: var(--glass-background);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+  }
+  
+  /* Add hover effect for better interaction feedback */
+  .dark .glass-effect:hover {
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.8),
+      0 16px 48px -8px rgba(255, 255, 255, 0.1),
+      0 24px 64px -16px rgba(var(--primary), 0.2);
+  }
+
+  .glass-cursor {
+    background: var(--glass-cursor);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-cursor-trail {
+    background: var(--glass-cursor-trail);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-card {
+    @apply glass-effect rounded-lg transition-all duration-300 hover:shadow-lg;
+  }
+}
+
 .hero-heading {
   @apply text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter;
   background: linear-gradient(
@@ -81,16 +134,15 @@
 }
 
 .tech-card {
-  @apply p-4 rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md hover:scale-105;
+  @apply glass-card p-4;
 }
 
 .project-card {
-  
-  @apply relative overflow-hidden rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md;
+  @apply glass-card relative overflow-hidden;
 }
 
 .experience-card {
-  @apply p-6 rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-200 hover:shadow-md;
+  @apply glass-card p-6;
 }
 
 .image-slider {
