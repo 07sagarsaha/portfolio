@@ -28,7 +28,18 @@ export function CursorEffect() {
     const handleMouseOver = () => setIsHovered(true);
     const handleMouseOut = () => setIsHovered(false);
 
-    const interactiveElements = document.querySelectorAll('button, a, input, .interactive');
+    // Updated selector to include all interactive elements and cards
+    const interactiveElements = document.querySelectorAll(`
+      button, 
+      a, 
+      input, 
+      .interactive,
+      .tech-card,
+      .project-card,
+      .experience-card,
+      .hero-heading,
+      .section-heading
+    `);
 
     interactiveElements.forEach(element => {
       element.addEventListener('mouseover', handleMouseOver);
