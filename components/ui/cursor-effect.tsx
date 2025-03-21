@@ -67,14 +67,14 @@ export function CursorEffect() {
     <>
       {/* Trail effect */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-40 h-8 w-8 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-40 h-8 w-8 dark:mix-blend-difference mix-blend-multiply"
         style={{
           x: trailXSpring,
           y: trailYSpring,
         }}
       >
         <motion.div
-          className="h-7 w-7 rounded-full bg-white opacity-30"
+          className="h-7 w-7 rounded-full bg-primary opacity-30"
           animate={{
             scale: isHovered ? 2 : 1,
           }}
@@ -87,14 +87,14 @@ export function CursorEffect() {
 
       {/* Main cursor */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-50 h-8 w-8 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-50 h-8 w-8 dark:mix-blend-difference mix-blend-multiply"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
         }}
       >
         <motion.div
-          className="h-7 w-7 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.7)]"
+          className="h-7 w-7 rounded-full bg-primary shadow-[0_0_20px_rgba(255,255,255,0.7)]"
           animate={{
             scale: isHovered ? 2 : 1,
           }}
