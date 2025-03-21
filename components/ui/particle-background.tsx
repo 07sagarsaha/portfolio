@@ -7,8 +7,7 @@ interface Particle {
   x: number;
   y: number;
   size: number;
-  speedX: number;
-  speedY: number;
+  speed: number;
   opacity: number;
 }
 
@@ -31,19 +30,24 @@ export function ParticleBackground() {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
+    // Get primary color from CSS variable
+    const computedStyle = getComputedStyle(document.documentElement);
+    const primaryHue = computedStyle.getPropertyValue('--primary').trim();
+    const baseColor = theme === 'dark'
+      ? '142, 70%, 45%'  // HSL values for dark mode primary
+      : '142, 76%, 36%'; // HSL values for light mode primary
+
     // Particle settings
     const particleCount = 100;
     const particles: Particle[] = [];
-    const baseColor = theme === 'dark' ? '255, 255, 255' : '0, 0, 0';
 
     // Initialize particles
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 2,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 3 + 1, // Particles between 1-4px
+        speed: Math.random() * 1 + 1, // Speed between 1-2
         opacity: Math.random() * 0.5 + 0.2,
       });
     }
@@ -55,37 +59,20 @@ export function ParticleBackground() {
 
       // Update and draw particles
       particles.forEach((particle) => {
-        // Move particle
-        particle.x += particle.speedX;
-        particle.y += particle.speedY;
+        // Move particle from right to left
+        particle.x -= particle.speed;
 
-        // Wrap around screen
-        if (particle.x > canvas.width) particle.x = 0;
-        if (particle.x < 0) particle.x = canvas.width;
-        if (particle.y > canvas.height) particle.y = 0;
-        if (particle.y < 0) particle.y = canvas.height;
+        // Reset particle position when it goes off screen
+        if (particle.x < 0) {
+          particle.x = canvas.width;
+          particle.y = Math.random() * canvas.height;
+        }
 
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${baseColor}, ${particle.opacity})`;
+        ctx.fillStyle = `hsla(${baseColor}, ${particle.opacity})`;
         ctx.fill();
-
-        // Draw connections
-        particles.forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 100) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(${baseColor}, ${0.2 * (1 - distance / 100)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.stroke();
-          }
-        });
       });
 
       requestAnimationFrame(animate);
