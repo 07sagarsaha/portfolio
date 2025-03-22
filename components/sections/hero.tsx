@@ -3,14 +3,30 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sphere } from "@react-three/drei";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export function Hero() {
+  const [sphereSize, setSphereSize] = useState(1);
+
+  useEffect(() => {
+    const updateSphereSize = () => {
+      const screenWidth = window.innerWidth;
+      const size = (screenWidth * 0.2) / 100; // 20% of screen width converted to appropriate scale
+      setSphereSize(size);
+    };
+
+    updateSphereSize();
+    window.addEventListener('resize', updateSphereSize);
+
+    return () => window.removeEventListener('resize', updateSphereSize);
+  }, []);
+
   return (
     <div className="relative h-screen flex items-center">
-      <Canvas className="absolute inset-0" camera={{ position: [0, 0, 5] }}>
+      <Canvas className="absolute inset-0" camera={{ position: [0, 0, 8] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
-        <Sphere args={[1, 32, 32]}>
+        <Sphere args={[sphereSize, 32, 32]}>
           <meshStandardMaterial
             color="#10b981"
             wireframe
@@ -28,12 +44,7 @@ export function Hero() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          {/* <div className="flex items-center mb-6 flex-col"> */}
-
-          {/* <img src="https://i.postimg.cc/mk9GYHqL/IMG-20231223-125412-345.jpg" className="w-40 h-40 rounded-2xl" /> */}
-
           <h1 className="hero-heading mb-6">Hi, I'm Sagar Saha</h1>
-          {/* </div> */}
           <p className="text-xl md:text-2xl text-muted-foreground mb-8">
             A passionate software developer and fourth-year student, crafting
             elegant solutions through code.
