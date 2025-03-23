@@ -27,7 +27,7 @@ export function Skills() {
               {skills.languages.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-2 py-1 text-sm rounded-full bg-secondary text-secondary-foreground"
+                  className="glass-effect px-3 py-1.5 text-sm rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
                 >
                   {skill}
                 </span>
@@ -40,7 +40,7 @@ export function Skills() {
               {skills.frontend.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-2 py-1 text-sm rounded-full bg-secondary text-secondary-foreground"
+                  className="glass-effect px-3 py-1.5 text-sm rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
                 >
                   {skill}
                 </span>
@@ -53,7 +53,7 @@ export function Skills() {
               {skills.backend.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-2 py-1 text-sm rounded-full bg-secondary text-secondary-foreground"
+                  className="glass-effect px-3 py-1.5 text-sm rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
                 >
                   {skill}
                 </span>
@@ -66,7 +66,7 @@ export function Skills() {
               {skills.databases.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-2 py-1 text-sm rounded-full bg-secondary text-secondary-foreground"
+                  className="glass-effect px-3 py-1.5 text-sm rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
                 >
                   {skill}
                 </span>
@@ -79,7 +79,7 @@ export function Skills() {
               {skills.tools.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-2 py-1 text-sm rounded-full bg-secondary text-secondary-foreground"
+                  className="glass-effect px-3 py-1.5 text-sm rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
                 >
                   {skill}
                 </span>

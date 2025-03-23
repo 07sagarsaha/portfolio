@@ -59,19 +59,19 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {project.tech.map((tech, techIndex) => (
             <span
               key={techIndex}
-              className="px-2 py-1 text-sm rounded-full bg-secondary text-secondary-foreground"
+              className="glass-effect px-3 py-1.5 text-sm rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
             >
               {tech}
             </span>
           ))}
         </div>
         <div className="flex gap-4">
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="glass" size="sm" asChild>
             <a href={project.github} target="_blank" rel="noopener noreferrer">
               <Github className="mr-2" /> GitHub
             </a>
           </Button>
-          <Button variant="outline" size="sm" asChild>
+          <Button variant="glass" size="sm" asChild>
             <a href={project.demo} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2" /> Demo
             </a>
