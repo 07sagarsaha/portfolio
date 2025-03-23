@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export function CursorEffect() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   const trailX = useMotionValue(-100);
@@ -21,6 +22,22 @@ export function CursorEffect() {
   const trailYSpring = useSpring(trailY, trailSpringConfig);
 
   useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return; // Don't add mouse events on mobile
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16);
       cursorY.set(e.clientY - 16);
@@ -32,9 +49,11 @@ export function CursorEffect() {
     return () => {
       window.removeEventListener('mousemove', moveCursor);
     };
-  }, [cursorX, cursorY, trailX, trailY]);
+  }, [cursorX, cursorY, trailX, trailY, isMobile]);
 
   useEffect(() => {
+    if (isMobile) return; // Don't add hover events on mobile
+
     const handleMouseOver = () => setIsHovered(true);
     const handleMouseOut = () => setIsHovered(false);
 
@@ -61,13 +80,16 @@ export function CursorEffect() {
         element.removeEventListener('mouseout', handleMouseOut);
       });
     };
-  }, []);
+  }, [isMobile]);
+
+  // Don't render anything on mobile
+  if (isMobile) return null;
 
   return (
     <>
       {/* Trail effect */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-40 h-8 w-8 dark:mix-blend-difference mix-blend-multiply"
+        className="pointer-events-none fixed left-0 top-0 z-40 h-8 w-8 dark:mix-blend-lighten mix-blend-difference"
         style={{
           x: trailXSpring,
           y: trailYSpring,
@@ -87,7 +109,7 @@ export function CursorEffect() {
 
       {/* Main cursor */}
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-50 h-8 w-8 dark:mix-blend-difference mix-blend-multiply"
+        className="pointer-events-none fixed left-0 top-0 z-50 h-8 w-8 dark:mix-blend-difference mix-blend-hard-light"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -108,12 +130,6 @@ export function CursorEffect() {
       <style jsx global>{`
         body {
           cursor: none;
-        }
-        
-        @media (max-width: 768px) {
-          body {
-            cursor: auto;
-          }
         }
       `}</style>
     </>
