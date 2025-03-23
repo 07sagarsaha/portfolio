@@ -11,7 +11,7 @@ export function Hero() {
   useEffect(() => {
     const updateSphereSize = () => {
       const screenWidth = window.innerWidth;
-      const size = (screenWidth * 0.2) / 100; // 20% of screen width converted to appropriate scale
+      const size = Math.min((screenWidth * 0.2) / 100, 2.5); // Max size of 2.5 units
       setSphereSize(size);
     };
 
@@ -22,8 +22,9 @@ export function Hero() {
   }, []);
 
   return (
-    <div className="relative h-screen flex items-center">
-      <Canvas className="absolute inset-0" camera={{ position: [0, 0, 8] }}>
+    <div className="relative h-[30vh]  sm:h-screen flex items-center">
+
+      <Canvas className="absolute inset-0 hidden sm:block" camera={{ position: [0, 0, 8] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <Sphere args={[sphereSize, 32, 32]}>
@@ -36,6 +37,7 @@ export function Hero() {
         </Sphere>
         <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
       </Canvas>
+
 
       <div className="container mx-auto px-4 z-10">
         <motion.div

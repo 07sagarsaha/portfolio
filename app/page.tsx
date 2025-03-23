@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen">
+      <main className="min-h-screen mt-20 sm:mt-0">
         <Hero />
         <div className="container mx-auto px-4 py-16 space-y-32">
           <Skills />
