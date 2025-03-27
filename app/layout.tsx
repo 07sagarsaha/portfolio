@@ -1,4 +1,3 @@
-
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -7,6 +6,7 @@ import { Navbar } from '@/components/navbar';
 import { Toaster } from '@/components/ui/sonner';
 import { CursorEffect } from '@/components/ui/cursor-effect';
 import { ParticleBackground } from '@/components/ui/particle-background';
+import { LoadingScreen } from '@/components/ui/loading-screen';
 import { cn } from '@/lib/utils';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -33,6 +33,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <LoadingScreen />
           <ParticleBackground />
           <div className="fixed inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-background/80 pointer-events-none" />
           <CursorEffect />
