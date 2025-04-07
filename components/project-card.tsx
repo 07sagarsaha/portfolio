@@ -73,7 +73,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </Button>
           <Button variant="glass" size="sm" asChild>
             <a href={project.demo} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="mr-2" /> Demo
+              <ExternalLink className="mr-2" /> Website
             </a>
           </Button>
         </div>
