@@ -51,7 +51,7 @@ export function Hero() {
             elegant solutions through code.
           </p>
           <div className="flex gap-4">
-            <Button variant="glass" asChild className="bg-primary text-primary-foreground">
+            <Button variant="glass" asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
               <a href="#contact">
                 Get in Touch
               </a>
