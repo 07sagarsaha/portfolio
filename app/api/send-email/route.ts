@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate environment variables
-    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+    if (!process.env.MAIL_USER || !process.env.MAIL_APP_PASSWORD) {
       console.error('Missing Gmail credentials in environment variables');
       return NextResponse.json(
         { error: 'Email service not configured' },
@@ -26,8 +26,8 @@ export async function POST(request: NextRequest) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_APP_PASSWORD,
       },
     });
 
@@ -36,8 +36,8 @@ export async function POST(request: NextRequest) {
 
     // Email options
     const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: process.env.GMAIL_USER, // Send to yourself
+      from: process.env.MAIL_USER,
+      to: process.env.MAIL_USER, // Send to yourself
       subject: `Portfolio Contact: Message from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
