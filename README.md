@@ -13,7 +13,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
   - Loading screen animations
   - Glass morphism effects
 - **Project Showcase**: Dynamic project grid with image sliders and tech stack tags
-- **Contact Form**: Integrated email functionality using EmailJS
+- **Contact Form**: Integrated email functionality using Gmail SMTP
 - **Modern Stack**: Built with Next.js 13, TypeScript, and Tailwind CSS
 - **Performance Optimized**: Static site generation for optimal loading speeds
 
@@ -26,7 +26,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 - **Animations**: Framer Motion
 - **3D Effects**: Three.js
 - **Form Handling**: React Hook Form
-- **Email Integration**: EmailJS
+- **Email Integration**: Gmail SMTP with Nodemailer
 - **Deployment**: Netlify
 
 ## 🚀 Getting Started
@@ -52,13 +52,20 @@ npm install
 yarn install
 ```
 
-3. Create a `.env.local` file in the root directory and add your EmailJS credentials:
+3. Create a `.env.local` file in the root directory and add your Gmail credentials:
 
 ```env
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-app-password-here
 ```
+
+**Setting up Gmail App Password:**
+1. Go to your Google Account settings
+2. Select Security
+3. Under "Signing in to Google," select 2-Step Verification (must be enabled)
+4. At the bottom of the page, select App passwords
+5. Select the app and device you want to generate the app password for
+6. Follow the instructions to enter the app password
 
 4. Run the development server:
 
@@ -103,9 +110,9 @@ yarn dev
 ### Contact Form
 
 - Form validation
-- Email integration
+- Gmail SMTP integration
 - Success/error notifications
-- Spam protection
+- Server-side email processing
 
 ## 📧 Contact
 

@@ -22,11 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={cn(
         inter.className,
         "min-h-screen bg-gradient-to-br from-background via-background to-accent/20 bg-fixed"
-      )}>
+      )} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

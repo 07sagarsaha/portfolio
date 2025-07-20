@@ -1,5 +1,4 @@
 // filepath: /E:/web dev/portfolio/lib/email.ts
-import emailjs from '@emailjs/browser';
 
 export const sendEmail = async (data: {
   name: string;
@@ -7,19 +6,22 @@ export const sendEmail = async (data: {
   message: string;
 }) => {
   try {
-    const response = await emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
-      {
-        from_name: data.name,
-        from_email: data.email,
-        message: data.message,
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-    );
-    return response;
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Failed to send email');
+    }
+
+    return await response.json();
   } catch (error) {
-    console.error('EmailJS Error:', error);
+    console.error('Email sending error:', error);
     throw error;
   }
 }

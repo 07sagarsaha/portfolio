@@ -43,7 +43,7 @@ export function Contact() {
             </p>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Mail className="w-5 h-5" />
-              <span>ss2749968@gmail.com</span>
+              <span>sagar.it.dev@gmail.com</span>
             </div>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
